@@ -40,6 +40,33 @@ module Enumerable
     output
   end
 
+  def my_count(&my_block)
+    if block_given?
+      count=0
+      self.each do |elem|
+        count+=1 if my_block.call(elem)==true
+      end
+      return count
+    end
+    return self.length
+  end
+
+  def my_map(&my_block)
+    output=[]
+    self.each do |elem|
+      output.push(my_block.call(elem))
+    end
+    return output
+  end
+
+  def my_inject(init, &my_block)
+    output=init
+    self.each do |elem|
+      output=my_block.call(output,elem)
+    end
+    return output
+  end
+
 end
 
 # You will first have to define my_each
