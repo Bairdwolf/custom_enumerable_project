@@ -16,6 +16,30 @@ module Enumerable
     return output
   end
 
+  def my_all?(&my_block)
+    output=true
+    self.each do |elem|
+      output=false if my_block.call(elem)==false
+    end
+    return output
+  end
+
+  def my_any?(&my_block)
+    output=false
+    self.each do |elem|
+      output=true if my_block.call(elem)==true
+    end
+    return output
+  end
+
+  def my_none?(&my_block)
+    output=true
+    self.each do |elem|
+      output=false if my_block.call(elem)==true
+    end
+    output
+  end
+
 end
 
 # You will first have to define my_each
